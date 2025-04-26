@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class DDFeature {
+class DDFeature: Codable {
     let name: String
     let url: String
     init(name: String, url: String) {

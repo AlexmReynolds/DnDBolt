@@ -6,7 +6,8 @@
 //
 import Foundation
 
-class DDClass {
+class DDClass: Codable {
+
     let name: String
     let url: String
     init(name: String, url: String) {

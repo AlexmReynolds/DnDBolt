@@ -13,8 +13,12 @@ class DDListClassViewModel: DDListViewModel {
         self.title = "Classes"
     }
     override func loadData() async throws {
-        let api = DDApi()
-        self.classes = try await api.fetchClasses()
+        self.classes = self.dataService.getClasses()
+        if self.classes.isEmpty {
+            let api = DDApi()
+            self.classes = try await api.fetchClasses()
+            self.dataService.saveClasses(self.classes)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

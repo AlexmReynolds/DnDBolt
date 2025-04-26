@@ -13,8 +13,12 @@ class DDListMonsterViewModel: DDListViewModel {
         self.title = "Monsters"
     }
     override func loadData() async throws {
-        let api = DDApi()
-        self.monsters = try await api.fetchMonsters()
+        self.monsters = self.dataService.getMonsters()
+        if self.monsters.isEmpty {
+            let api = DDApi()
+            self.monsters = try await api.fetchMonsters()
+            self.dataService.saveMonsters(self.monsters)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

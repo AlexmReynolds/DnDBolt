@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class DDSpell {
+class DDSpell: Codable {
     let name: String
     let url: String
     init(name: String, url: String) {

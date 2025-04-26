@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class DDMonster {
+class DDMonster: Codable {
     let name: String
     let url: String
     let size: String
@@ -23,7 +23,7 @@ class DDMonster {
     let intelligence: Int
     let wisdom: Int
     let charisma: Int
-    enum Speed: String {
+    enum Speed: String, Codable {
         case walk
         case swim
     }
@@ -44,15 +44,5 @@ class DDMonster {
         self.intelligence = intelligence
         self.wisdom = wisdom
         self.charisma = charisma
-    }
-}
-
-class DDMonsterArmorClass {
-    let type: String
-    let value: Int
-    
-    init(type: String, value: Int) {
-        self.type = type
-        self.value = value
     }
 }

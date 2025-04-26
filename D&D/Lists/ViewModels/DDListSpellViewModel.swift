@@ -14,8 +14,12 @@ class DDListSpellViewModel: DDListViewModel {
         self.title = "Spells"
     }
     override func loadData() async throws {
-        let api = DDApi()
-        self.spells = try await api.fetchSpells()
+        self.spells = self.dataService.getSpells()
+        if self.spells.isEmpty {
+            let api = DDApi()
+            self.spells = try await api.fetchSpells()
+            self.dataService.saveSpells(self.spells)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

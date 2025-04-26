@@ -13,8 +13,12 @@ class DDListFeatureViewModel: DDListViewModel {
         self.title = "Features"
     }
     override func loadData() async throws {
-        let api = DDApi()
-        self.features = try await api.fetchFeatures()
+        self.features = self.dataService.getFeatures()
+        if self.features.isEmpty {
+            let api = DDApi()
+            self.features = try await api.fetchFeatures()
+            self.dataService.saveFeatures(self.features)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

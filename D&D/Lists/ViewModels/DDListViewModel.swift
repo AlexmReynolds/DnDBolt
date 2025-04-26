@@ -10,12 +10,13 @@ import UIKit
 
 class DDListViewModel: NSObject {
     var title: String = ""
-    
-    func loadData() async throws {
+    var dataService = DDDataService()
 
+    func loadData() async throws {
+        //override in subclass
     }
     
-    func detailController() -> UIViewController {//TODO: Override in child models
+    func detailController() -> UIViewController {//TODO: Override in subclass
         return UIViewController()
     }
     
