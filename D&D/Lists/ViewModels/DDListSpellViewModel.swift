@@ -27,10 +27,12 @@ class DDListSpellViewModel: DDListViewModel {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? DDHomeViewTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "spellCell") as? DDListSpellTableViewCell else {
             return UITableViewCell()
         }
-        cell.label.text = self.spells[indexPath.row].name
+        let spell = self.spells[indexPath.row]
+        cell.nameLabel.text = spell.name
+        cell.levelLabel.text = "Lvl: \(spell.level)"
         return cell
     }
 }

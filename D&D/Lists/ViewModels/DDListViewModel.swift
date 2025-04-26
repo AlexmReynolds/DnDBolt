@@ -16,7 +16,7 @@ class DDListViewModel: NSObject {
         //override in subclass
     }
     
-    func detailController() -> UIViewController {//TODO: Override in subclass
+    func detailController(at indexPath: IndexPath) -> UIViewController {//TODO: Override in subclass
         return UIViewController()
     }
     

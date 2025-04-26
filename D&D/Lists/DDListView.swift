@@ -12,6 +12,7 @@ class DDListView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
         tableView.register(DDHomeViewTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(DDListSpellTableViewCell.self, forCellReuseIdentifier: "spellCell")
         tableView.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
 
         return tableView

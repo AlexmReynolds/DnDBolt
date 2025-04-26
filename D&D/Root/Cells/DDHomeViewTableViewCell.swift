@@ -27,6 +27,9 @@ class DDHomeViewTableViewCell: UITableViewCell {
     
     private func setup() {
         self.contentView.addSubview(self.label)
+        let chevronImageView = UIImageView(image: UIImage(named: "chevron")?.withRenderingMode(.alwaysTemplate))
+        chevronImageView.tintColor = .white
+        self.accessoryView = chevronImageView
         let view = UIView()
         view.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
         self.backgroundView = view

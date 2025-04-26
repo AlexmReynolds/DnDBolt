@@ -39,4 +39,46 @@ extension DDApi {
             throw error
         }
     }
+    
+    func fetchMonster(name: String) async throws -> DDMonster {
+        let paths = [
+            DDApiURLEndpointPath(path: .monsters, resourceId: name.lowercased())
+        ]
+        
+        let endpoint = DDApiURLEndpoint()
+        let baseURL = endpoint.baseComponentsFor(paths: paths)
+        let request = endpoint.makeRequest(components: baseURL, method: .get, queryItems: nil)
+        
+        let result = try await self.dataTask(request: request)
+        
+        do {
+            let apiMonstersRepsponse =  try JSONDecoder().decode(DDMonsterDataModel.self, from: result.data)
+            if let name = apiMonstersRepsponse.name, let url = apiMonstersRepsponse.url {
+                return DDMonster(name: name,
+                                 url: url,
+                                 size: apiMonstersRepsponse.size ?? "",
+                                 type: apiMonstersRepsponse.type ?? "",
+                                 alignment: apiMonstersRepsponse.alignment ?? "",
+                                 armorClass: apiMonstersRepsponse.armorClass ?? [],
+                                 hitPoints: apiMonstersRepsponse.hitPoints ?? 0,
+                                 hitDice: apiMonstersRepsponse.hitDice ?? "",
+                                 hitPointsRoll: apiMonstersRepsponse.hitPointsRoll ?? "",
+                                 speed: [:],
+                                 strength: apiMonstersRepsponse.strength ?? 0,
+                                 dexterity: apiMonstersRepsponse.dexterity ?? 0,
+                                 constitution: apiMonstersRepsponse.constitution ?? 0,
+                                 intelligence: apiMonstersRepsponse.intelligence ?? 0,
+                                 wisdom: apiMonstersRepsponse.wisdom ?? 0,
+                                 charisma: apiMonstersRepsponse.charisma ?? 0)
+            } else {
+                let error = NSError(domain: "com.api.error", code: 500, userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("Data format was invalid", comment: "api data format error")])
+                throw error
+            }
+
+        } catch let err {
+            //make our own better error to bubble to UI
+            let error = NSError(domain: "com.api.error", code: 500, userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("Data format was invalid", comment: "api data format error")])
+            throw error
+        }
+    }
 }

@@ -9,8 +9,10 @@ import Foundation
 class DDSpell: Codable {
     let name: String
     let url: String
-    init(name: String, url: String) {
+    let level: Int
+    init(name: String, url: String, level: Int) {
         self.name = name
         self.url = url
+        self.level = level
     }
 }

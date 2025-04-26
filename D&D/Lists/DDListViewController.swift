@@ -27,7 +27,7 @@ class DDListViewController: UIViewController {
             do {
                 try await self.viewModel.loadData()
                 self.castView.tableView.reloadData()
-            } catch let error {
+            } catch {
                 //TODO: Show Error in ui
             }
         }
@@ -37,6 +37,7 @@ class DDListViewController: UIViewController {
         let view = DDListView()
         self.castView = view
         view.tableView.dataSource = self.viewModel
+        view.tableView.delegate = self
         self.view = view
     }
 }
@@ -47,7 +48,7 @@ extension DDListViewController: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         
-        let vc = self.viewModel.detailController()
+        let vc = self.viewModel.detailController(at: indexPath)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

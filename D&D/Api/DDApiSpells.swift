@@ -26,7 +26,7 @@ extension DDApi {
                 for spell in results {
                     //name and url are required so if the api gave us bad data, let's ignore it
                     if let name = spell.name, let url = spell.url {
-                        spells.append(DDSpell(name: name, url: url))
+                        spells.append(DDSpell(name: name, url: url, level: spell.level))
                     }
                 }
                 return spells

@@ -20,6 +20,11 @@ class DDListMonsterViewModel: DDListViewModel {
             self.dataService.saveMonsters(self.monsters)
         }
     }
+
+    override func detailController(at indexPath: IndexPath) -> UIViewController {
+        let selectedMonster = self.monsters[indexPath.row]
+        return DDMonsterDetailViewController(viewModel: DDMonsterDetailViewModel(monster: selectedMonster))
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.monsters.count
