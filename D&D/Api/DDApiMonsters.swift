@@ -42,7 +42,7 @@ extension DDApi {
     
     func fetchMonster(name: String) async throws -> DDMonster {
         let paths = [
-            DDApiURLEndpointPath(path: .monsters, resourceId: name.lowercased())
+            DDApiURLEndpointPath(path: .monsters, resourceId: name.lowercased().replacingOccurrences(of: " ", with: "-"))
         ]
         
         let endpoint = DDApiURLEndpoint()
@@ -59,10 +59,10 @@ extension DDApi {
                                  size: apiMonstersRepsponse.size ?? "",
                                  type: apiMonstersRepsponse.type ?? "",
                                  alignment: apiMonstersRepsponse.alignment ?? "",
-                                 armorClass: apiMonstersRepsponse.armorClass ?? [],
-                                 hitPoints: apiMonstersRepsponse.hitPoints ?? 0,
-                                 hitDice: apiMonstersRepsponse.hitDice ?? "",
-                                 hitPointsRoll: apiMonstersRepsponse.hitPointsRoll ?? "",
+                                 armorClass: apiMonstersRepsponse.armor_class ?? [],
+                                 hitPoints: apiMonstersRepsponse.hit_points ?? 0,
+                                 hitDice: apiMonstersRepsponse.hit_dice ?? "",
+                                 hitPointsRoll: apiMonstersRepsponse.hit_points_roll ?? "",
                                  speed: [:],
                                  strength: apiMonstersRepsponse.strength ?? 0,
                                  dexterity: apiMonstersRepsponse.dexterity ?? 0,

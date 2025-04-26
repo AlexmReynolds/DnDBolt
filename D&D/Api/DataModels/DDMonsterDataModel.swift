@@ -12,10 +12,10 @@ struct DDMonsterDataModel: Codable {
     let size: String?
     let type: String?
     let alignment: String?
-    let armorClass: [DDMonsterArmorClass]?
-    let hitPoints: Int?
-    let hitDice: String?
-    let hitPointsRoll: String?
+    let armor_class: [DDMonsterArmorClass]?
+    let hit_points: Int?
+    let hit_dice: String?
+    let hit_points_roll: String?
     let speed: [String: String]?
     let strength: Int?
     let dexterity: Int?

@@ -43,7 +43,7 @@ class DDMonsterDetailView: UIView {
         return label
     }()
     
-    let hitDiceLabel: UILabel = {
+    let hitPointsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 14)
@@ -61,7 +61,7 @@ class DDMonsterDetailView: UIView {
         stack.addArrangedSubview(self.sizeLabel)
         stack.addArrangedSubview(self.typeLabel)
         stack.addArrangedSubview(self.alignmentLabel)
-        stack.addArrangedSubview(self.hitDiceLabel)
+        stack.addArrangedSubview(self.hitPointsLabel)
         return stack
     }()
     
@@ -84,7 +84,7 @@ class DDMonsterDetailView: UIView {
         self.nameLabel.text = "Name: " + monster.name
         self.alignmentLabel.text = "Alignment: " + monster.alignment
         self.typeLabel.text = "Type: " + monster.type
-        self.hitDiceLabel.text = "Hit Dice: " + monster.hitDice
+        self.hitPointsLabel.text = "Hit Points: \(monster.hitPoints)"
 
     }
 }
