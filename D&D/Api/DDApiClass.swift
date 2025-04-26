@@ -1,15 +1,16 @@
 //
-//  DDApiMonsters.swift
-//  D&D
+//  DDApiClass.swift
+//  DND
 //
 //  Created by Alex Reynolds on 4/26/25.
 //
+
 import Foundation
 
 extension DDApi {
-    func fetchMonsters() async throws -> [DDMonster] {
+    func fetchClasses() async throws -> [DDClass] {
         let paths = [
-            DDApiURLEndpointPath(path: .monsters)
+            DDApiURLEndpointPath(path: .classes)
         ]
         
         let endpoint = DDApiURLEndpoint()
@@ -19,16 +20,16 @@ extension DDApi {
         let result = try await self.dataTask(request: request)
         
         do {
-            let apiMonstersRepsponse =  try JSONDecoder().decode(DDMonstersDataModel.self, from: result.data)
+            let apiMonstersRepsponse =  try JSONDecoder().decode(DDClassesDataModel.self, from: result.data)
             if let results = apiMonstersRepsponse.results {
-                var monsters = [DDMonster]()
-                for monster in results {
+                var classes = [DDClass]()
+                for klass in results {
                     //name and url are required so if the api gave us bad data, let's ignore it
-                    if let name = monster.name, let url = monster.url {
-                        monsters.append(DDMonster(name: name, url: url, size: "", type: "", alignment: "", armorClass: [], hitPoints: 0, hitDice: "", hitPointsRoll: "", speed: [:], strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0))
+                    if let name = klass.name, let url = klass.url {
+                        classes.append(DDClass(name: name, url: url))
                     }
                 }
-                return monsters
+                return classes
             } else {
                 return []//return empty sincee the UI doesn't need to know IMO
             }

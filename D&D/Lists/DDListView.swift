@@ -12,6 +12,8 @@ class DDListView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
         tableView.register(DDHomeViewTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
+
         return tableView
     }()
     
@@ -21,10 +23,10 @@ class DDListView: UIView {
     }
     
     private func setup() {
-        self.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
+        self.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
         self.addSubview(self.tableView)
         self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        self.tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }

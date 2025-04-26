@@ -22,16 +22,15 @@ class DDListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VCTTT")
+        self.title = self.viewModel.title
         Task { @MainActor in
             do {
                 try await self.viewModel.loadData()
                 self.castView.tableView.reloadData()
             } catch let error {
-                //Show Error
+                //TODO: Show Error in ui
             }
         }
-        // Do any additional setup after loading the view.
     }
 
     override func loadView() {

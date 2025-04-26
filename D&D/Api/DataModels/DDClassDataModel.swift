@@ -11,5 +11,5 @@ struct DDClassWebObject: Codable {
 }
 struct DDClassesDataModel: Codable {
     let count: Int?
-    let results: [DDResourceWithLevelDataModel]?
+    let results: [DDResourceDataModel]?
 }

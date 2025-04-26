@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let vc = DDHomeViewController()
         let nav = UINavigationController(rootViewController: vc)
+        UINavigationBar.appearance().backgroundColor = UIColor(white: 0.2, alpha: 1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(white: 0.2, alpha: 1.0)
+            
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
         self.window?.rootViewController = nav
         
         self.window?.makeKeyAndVisible()

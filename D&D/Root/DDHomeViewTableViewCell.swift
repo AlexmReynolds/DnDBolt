@@ -10,7 +10,7 @@ class DDHomeViewTableViewCell: UITableViewCell {
     let label: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -27,17 +27,19 @@ class DDHomeViewTableViewCell: UITableViewCell {
     
     private func setup() {
         self.contentView.addSubview(self.label)
-        self.backgroundView = UIView()
-        self.accessoryType = .detailDisclosureButton
-        self.label.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        self.label.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
+        self.backgroundView = view
+        self.accessoryType = .disclosureIndicator
+        self.label.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16.09).isActive = true
+        self.label.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16.0).isActive = true
 
         //make breakable to prevent constraint errors when cell is first created and frame has not been laid out
-        let trailing = self.label.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
+        let trailing = self.label.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16.0)
         trailing.priority = UILayoutPriority(999)
         trailing.isActive = true
         
-        let bottom = self.label.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
+        let bottom = self.label.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -16.0)
         bottom.priority = UILayoutPriority(999)
         bottom.isActive = true
     }

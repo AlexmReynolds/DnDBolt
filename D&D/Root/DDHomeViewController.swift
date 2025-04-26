@@ -12,14 +12,14 @@ class DDHomeViewController: UIViewController {
     var castView: DDHomeView! //easier to talk to later vs casting self.view all the time
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VCTTT")
-        // Do any additional setup after loading the view.
+        self.title = "DnD"
     }
 
     override func loadView() {
         let view = DDHomeView()
         self.castView = view
         view.tableView.dataSource = self.viewModel
+        view.tableView.delegate = self
         self.view = view
     }
 }
@@ -34,7 +34,6 @@ extension DDHomeViewController: UITableViewDelegate {
         let vm = DDListViewModel.model(for: rowName)
         let vc = DDListViewController(viewModel: vm)
         self.navigationController?.pushViewController(vc, animated: true)
-        print("row \(rowName)")
     }
 }
 

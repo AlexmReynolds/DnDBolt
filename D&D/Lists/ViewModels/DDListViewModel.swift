@@ -22,8 +22,14 @@ class DDListViewModel: NSObject {
     //simple factory
     class func model(for name: String) -> DDListViewModel {
         switch name {
-        case "monsters":
+        case "Monsters":
             return DDListMonsterViewModel()
+        case "Spells":
+            return DDListSpellViewModel()
+        case "Features":
+            return DDListFeatureViewModel()
+        case "Classes":
+            return DDListClassViewModel()
         default:
             return DDListViewModel()
         }
