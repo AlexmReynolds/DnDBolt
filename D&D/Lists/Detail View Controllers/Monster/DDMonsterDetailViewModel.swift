@@ -14,6 +14,6 @@ class DDMonsterDetailViewModel {
     }
     
     func loadData() async throws {
-        self.monster = try await self.api.fetchMonster(name: self.monster.name)
+        self.monster = try await self.api.fetchMonster(index: self.monster.index)
     }
 }

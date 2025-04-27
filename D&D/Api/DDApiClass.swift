@@ -26,7 +26,7 @@ extension DDApi {
                 for klass in results {
                     //name and url are required so if the api gave us bad data, let's ignore it
                     if let name = klass.name, let url = klass.url {
-                        classes.append(DDClass(name: name, url: url))
+                        classes.append(DDClass(name: name, url: url, index: klass.index ?? ""))
                     }
                 }
                 return classes

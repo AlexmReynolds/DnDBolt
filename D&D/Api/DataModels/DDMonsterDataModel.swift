@@ -9,6 +9,7 @@ import Foundation
 struct DDMonsterDataModel: Codable {
     let name: String?
     let url: String?
+    let index: String?
     let size: String?
     let type: String?
     let alignment: String?
@@ -23,6 +24,7 @@ struct DDMonsterDataModel: Codable {
     let intelligence: Int?
     let wisdom: Int?
     let charisma: Int?
+    let image: String?
 }
 
 struct DDMonstersDataModel: Codable {

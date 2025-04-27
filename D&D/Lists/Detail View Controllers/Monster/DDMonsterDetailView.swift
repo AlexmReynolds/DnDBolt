@@ -52,11 +52,19 @@ class DDMonsterDetailView: UIView {
         return label
     }()
     
+    let monsterImage: UIImageView = {
+        let view = UIImageView()
+        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
     lazy var stack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = 8.0
+        stack.addArrangedSubview(self.monsterImage)
         stack.addArrangedSubview(self.nameLabel)
         stack.addArrangedSubview(self.sizeLabel)
         stack.addArrangedSubview(self.typeLabel)
@@ -85,6 +93,21 @@ class DDMonsterDetailView: UIView {
         self.alignmentLabel.text = "Alignment: " + monster.alignment
         self.typeLabel.text = "Type: " + monster.type
         self.hitPointsLabel.text = "Hit Points: \(monster.hitPoints)"
+
+        if let imageURL = monster.imageURL {
+            //TODO: we could fetch images in a lot of places in a DND app so this would be extracted to a helper class.
+            URLSession.shared.dataTask(with: imageURL) { data, response, error in
+                guard
+                    let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                    let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                    let data = data, error == nil,
+                    let image = UIImage(data: data)
+                    else { return }
+                DispatchQueue.main.async() { [weak self] in
+                    self?.monsterImage.image = image
+                }
+            }.resume()
+        }
 
     }
 }

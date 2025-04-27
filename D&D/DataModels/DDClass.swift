@@ -7,11 +7,12 @@
 import Foundation
 
 class DDClass: Codable {
-
     let name: String
     let url: String
-    init(name: String, url: String) {
+    let index: String
+    init(name: String, url: String, index: String) {
         self.name = name
         self.url = url
+        self.index = index
     }
 }

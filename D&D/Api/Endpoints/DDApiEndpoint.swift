@@ -7,7 +7,9 @@
 import Foundation
 
 struct DDApiURLEndpoint {
-    
+    enum HostURLString: String {
+        case production = "https://www.dnd5eapi.co"
+    }
     enum Path : String, CaseIterable {
         case classes
         case spells
@@ -24,7 +26,8 @@ struct DDApiURLEndpoint {
     }
     
     var baseURL: URL {//Api version doesn't seem to change in decades but if it were more given to change, we can extract the version path component and select version when we build the request in case some endpoints are only in newer version
-        return URL(string: "https://www.dnd5eapi.co/api/2014")!
+        //FOR NOW ! since we know it to be valid
+        return URL(string: HostURLString.production.rawValue)!.appendingPathComponent("/api/2014")
     }
     
     

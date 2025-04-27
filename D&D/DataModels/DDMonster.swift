@@ -9,6 +9,7 @@ import Foundation
 class DDMonster: Codable {
     let name: String
     let url: String
+    let index: String
     let size: String
     let type: String
     let alignment: String
@@ -23,13 +24,15 @@ class DDMonster: Codable {
     let intelligence: Int
     let wisdom: Int
     let charisma: Int
+    var imageURL: URL?
     enum Speed: String, Codable {
         case walk
         case swim
     }
-    init(name: String, url: String, size: String, type: String, alignment: String, armorClass: [DDMonsterArmorClass], hitPoints: Int, hitDice: String, hitPointsRoll: String, speed: [Speed:String], strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int) {
+    init(name: String, url: String, index: String, size: String, type: String, alignment: String, armorClass: [DDMonsterArmorClass], hitPoints: Int, hitDice: String, hitPointsRoll: String, speed: [Speed:String], strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int) {
         self.name = name
         self.url = url
+        self.index = index
         self.size = size
         self.type = type
         self.alignment = alignment

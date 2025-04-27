@@ -22,6 +22,11 @@ class DDListSpellViewModel: DDListViewModel {
         }
     }
     
+    override func detailController(at indexPath: IndexPath) -> UIViewController {
+        let selected = self.spells[indexPath.row]
+        return DDSpellDetailViewController(viewModel: DDSpellDetailViewModel(spell: selected))
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.spells.count
     }
